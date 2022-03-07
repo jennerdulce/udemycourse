@@ -121,6 +121,8 @@ tally(votes)
 
 ## Reflection / Notes
 
+### General
+
 - To create a basic project, you can use `gradle init --type java-library` which will create a default files needed to create a gradle project.
 - You can import prebuilt Java packages and utilize the contents and logic immediately.
 1. `import java.util.Random`
@@ -128,13 +130,25 @@ tally(votes)
 3. Go on oracle or type `randomVariable.` the `.` shows methods that the object has.
 - Different types of loops in Java (Links to an external site.)
 > "looping is a feature which facilitates the execution of a set of instructions until the controlling Boolean-expression evaluates to false."
-- for loop 
-  - Typically used when we have a finite range of numbers.
+- for loop
+    - Typically used when we have a finite range of numbers.
 - while loop
-  - Repeats while boolean expression is true.
-  - Used when size of array or expression is unknown.
+    - Repeats while boolean expression is true.
+    - Used when size of array or expression is unknown.
 - do-while loop
-  - Same as while, but runs at least 1 iteration even if the boolean expression is false.
+    - Same as while, but runs at least 1 iteration even if the boolean expression is false.
+
+### Objects vs Primitives
+
+> "Java has a two-fold type system consisting of primitives such as int, boolean and reference types such as Integer, Boolean. Every primitive type corresponds to a reference type. Every object contains a single value of the corresponding primitive type. The wrapper classes are immutable (so that their state can't change once the object is constructed) and are final (so that we can't inherit from them)."
+- Objects in java are slower and have bigger memory impact than primitives
+  - Footprint for primitives is smaller
+- Decision on what object you should use is mainly basedon application performance
+  - How much memory
+  - Default Values
+  - Ignore if you have no limitations
+- Performance of Java code depends very much on hardware that the code runs on
+
 
 ### HashSet vs HashMap
 
@@ -157,6 +171,7 @@ tally(votes)
 #### HashMap
 
 - `HashMap<String, Integer> = new HashMap<>()`
+- `HashMap <ArrayList<Integer>, ArrayList<Integer>> dailyAttendance = new HashMap<>();`
 - Adds Key Value pairs
 - Specify what data type these pairs are
 - `.put()` adds key value pair to HashMap
@@ -174,3 +189,43 @@ tally(votes)
 6. Create arguments to put into the methods
 7. Assert a return value by `assertEquals / assert` that the method should return or not return
    - It is good to assert an expected and unexpected values for each test
+
+### File I/O
+
+- Obtain the path by
+  - `Path filePath = Paths.get(".");`
+  - `System.out.println(filePath.toAbsolutePath())`
+
+- Replace path '.' with the actual path by copy and pasting path from the console
+  - `Path filePath = Paths.get("actual Path");`
+
+- Create scanner and use scanner methods to read the file
+  - `Scanner scanner = new Scanner(filePath);`
+
+- EXAMPLE
+```java
+public static String linter(String filePath) {
+int lineCounter = 0;
+String errorMessage = "";
+try{
+        // Create Path
+        Path newPath=Paths.get(filePath);
+        // Use path in scanner
+        Scanner scanner=new Scanner(newPath);
+        while(scanner.hasNextLine()){
+            lineCounter++;
+            // scanner methods
+            String currentString=scanner.nextLine();
+         if(currentString.isEmpty()||currentString.endsWith(";")||currentString.endsWith("{")||currentString.endsWith("}")||currentString.contains("if")||currentString.contains("else")){
+            continue;
+         } else {
+            errorMessage+="Line "+lineCounter+": Missing semicolon.\n";
+            }
+        }
+    }
+    catch (Exception e){
+         System.out.println(e + " Line: " + lineCounter);
+    }
+    return errorMessage;
+}
+```
