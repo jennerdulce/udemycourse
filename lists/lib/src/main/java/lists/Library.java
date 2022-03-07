@@ -1,9 +1,8 @@
 package lists;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.nio.file.Path;
+import java.util.*;
 
 public class Library {
     public static void main(String[] args){
@@ -62,6 +61,22 @@ public class Library {
                 {65, 56, 55, 52, 55, 62, 57}
         };
         System.out.println(lowestAverage(weeklyMonthTemperatures));
+
+        // Weather Data
+        System.out.println(weatherData(weeklyMonthTemperatures));
+
+        // Tally
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Hedge");
+        votes.add("Shrub");
+        votes.add("Bush");
+        votes.add("Hedge");
+        votes.add("Bush");
+        System.out.println(tally(votes));
     }
 
     public static ArrayList<Integer> roll(int rolls){
@@ -106,6 +121,57 @@ public class Library {
             }
         }
         return  Arrays.toString(lowestArr);
+    }
+
+    public static String weatherData(int[][] arr){
+        // Find the MIN and MAX values of all the temps
+        int lowestTemp = Integer.MAX_VALUE;
+        int highestTemp = Integer.MIN_VALUE;
+        HashSet<Integer> recordedTemps= new HashSet<>();
+        for (int i = 0; i < arr.length; i++){
+            for (int j = 0; j < arr[i].length; j++){
+                if (arr[i][j] < lowestTemp){
+                    lowestTemp = arr[i][j];
+                }
+                if (arr[i][j] > highestTemp){
+                    highestTemp = arr[i][j];
+                }
+                if (recordedTemps.contains(arr[i][j]) == false){
+                    recordedTemps.add(arr[i][j]);
+                }
+            }
+        }
+        // Check to see what temps were not recorded by using MIN and MAX values as the range of numbers
+        String weatherString = "";
+        weatherString += "High: " + highestTemp + "\n";
+        weatherString += "Low: " + lowestTemp + "\n";
+        for (int i = lowestTemp; i <= highestTemp; i++){
+            if (!recordedTemps.contains(i)){
+                weatherString += "Never saw temperature: " + i + "\n";
+            }
+        }
+        return weatherString;
+    }
+
+    public static String tally(List<String> votes){
+        HashMap<String, Integer> totalVotes = new HashMap<>();
+        String winner = "placeholder";
+        int highestNumberOfVotes = Integer.MIN_VALUE;
+        // Similar to foreach
+        for (String name : votes){
+            if(!totalVotes.containsKey(name)) {
+                totalVotes.put(name, 0);
+            } else {
+                // put overrides the value of the key; Wondering if we are able to just update by totalVotes.get(name) + 1 (skipping put method
+                totalVotes.put(name, totalVotes.get(name) + 1);
+            }
+            if (totalVotes.get(name) > highestNumberOfVotes) {
+                highestNumberOfVotes = totalVotes.get(name);
+                winner = name;
+            }
+        }
+        String announceWinner = winner + " received the most votes!";
+        return announceWinner;
     }
 
 }

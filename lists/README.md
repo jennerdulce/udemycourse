@@ -26,23 +26,82 @@
 - Given an array of arrays calculate the average value for each array and return the array with the lowest average.
 - IN: lowestAverages(int[][] arr)
 - OUT: String
+- 
+### Analyzing Weather Data
+
+- Use the October Seattle weather data above. Iterate through all of the data to find the min and max values. Use a HashSet of type Integer to keep track of all the unique temperatures seen. Finally, iterate from the min temp to the max temp and create a String containing any temperature not seen during the month. Return that String.
+- IN: weatherData(int[][] arr)
+```
+int[][] weeklyMonthTemperatures = {
+  {66, 64, 58, 65, 71, 57, 60},
+  {57, 65, 65, 70, 72, 65, 51},
+  {55, 54, 60, 53, 59, 57, 61},
+  {65, 56, 55, 52, 55, 62, 57}
+  };
+```
+  
+- OUT: 
+```
+High: 72 Low: 51
+Never saw temperature: 63
+Never saw temperature: 67
+Never saw temperature: 68
+Never saw temperature: 69
+```
+
+
+### Tallying Election
+
+- Write a function called tally that accepts a List of Strings representing votes and returns one string to show what got the most votes.
+- IN: 
+  - `tally(ArrayList)`
+```
+List<String> votes = new ArrayList<>();
+votes.add("Bush");
+votes.add("Bush");
+votes.add("Bush");
+votes.add("Shrub");
+votes.add("Hedge");
+votes.add("Shrub");
+votes.add("Bush");
+votes.add("Hedge");
+votes.add("Bush");
+tally(votes)
+```
+- OUT: `"Bush received the most votes!"` (String)
 
 ## Classes and Methods Used
 
 ### Classes Used
 
 - ArrayList
-    - `.add()`
+  - `.add()`
     - Adds a piece of data to the created array list.
 
 - Random
-    - `.nextInt() + 1`
+  - `.nextInt() + 1`
     - Selects a random number from a range of numbers dictated by the bound + 1.
+
+- HashSet<Integer>
+  - `.add(Object O)`
+    - Adds an object to the HashSet.
+  - `.contains(Object O)`
+    - Checks to see if the HashSet contains the argument object.
+
+- HashMap<String, Integer>
+    - `.put(String, Integer)`
+      - Adds a key / value pair to the HashMap
+    - `.containsKey(String)`
+      - Checks to see if the HashMap contains the given key and returns a boolean.
 
 ### Other Methods Used
 
-- `Double.POISITIVE_INIFITY`;
-  - Creates the highest positive value possible.
+- `Double.POISITIVE_INIFITY`
+  - Creates the highest double value possible.
+- `Integer.MAX_VALUE`
+  - Creates the highest integer value possible
+- `Integer.MIN_VALUE`
+  - Creates the lowest integer value possible
 
 ## Skills Exercised
 
@@ -56,6 +115,9 @@
   - Initializing the length
   - Hardcoding values and length
 - Array of arrays `int[][]`
+- HashMap
+- HashSet
+- Looping throw nested arrays
 
 ## Reflection / Notes
 
@@ -73,6 +135,31 @@
   - Used when size of array or expression is unknown.
 - do-while loop
   - Same as while, but runs at least 1 iteration even if the boolean expression is false.
+
+### HashSet vs HashMap
+
+1. Implementation: HashMap implements Map interface and HashSet implements Set interface. 
+2. Duplicates: HashSet doesn’t allow duplicate values. HashMap stores key, value pairs and it does not allow duplicate keys. If the key is duplicate then the old key is replaced with the new value. 
+3. Number of objects during storing objects: HashMap requires two objects put(K key, V Value) to add an element to HashMap object, while HashSet requires only one object add(Object o)
+4. Dummy value: In HashMap no concept of dummy value, HashSet internally uses HashMap to add elements. In HashSet, the argument passed in add(Object) method serves as key K. Java internally associates dummy value for each value passed in add(Object) method. 
+5. Storing or Adding mechanism: HashMap internally uses hashing to store or add objects, HashSet internally uses HashMap object to store or add the objects. 
+6. Speed: HashSet is slower than HashMap. 
+7. Insertion: HashMap uses the put() method for storing data, While in HashSet use add() method for add or storing data.
+
+#### HashSet
+
+- `HashSet<String> = new HashSet<>()`
+- Adds per object
+- Returns a boolean
+- `.add()` adds key value pair to HashMap
+- Slower than HashMap
+
+#### HashMap
+
+- `HashMap<String, Integer> = new HashMap<>()`
+- Adds Key Value pairs
+- Specify what data type these pairs are
+- `.put()` adds key value pair to HashMap
 
 ### Testing
 - Testing is fairly simple
