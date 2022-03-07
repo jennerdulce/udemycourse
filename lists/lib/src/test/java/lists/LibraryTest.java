@@ -4,11 +4,53 @@
 package lists;
 
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
-    @Test void someLibraryMethodReturnsTrue() {
-        Library classUnderTest = new Library();
+    @Test void roll() {
+        Library sut = new Library();
+        ArrayList<Integer> arr = sut.roll(5);
+        assertEquals(5, arr.size(), "There should be 4 items in the array");
+        assertNotEquals(3, arr.size(), "Should be false because there are 5 items in the array.");
+    }
 
+    @Test void containsDuplicates() {
+        Library sut = new Library();
+        ArrayList<Integer> arrTrue = new ArrayList<>();
+        arrTrue.add(1);
+        arrTrue.add(2);
+        arrTrue.add(1);
+
+        ArrayList<Integer> arrFalse = new ArrayList<>();
+        arrFalse.add(1);
+        arrFalse.add(2);
+        arrFalse.add(3);
+
+        boolean resultTrue = sut.containsDuplicates(arrTrue);
+        boolean resultFalse = sut.containsDuplicates(arrFalse);
+
+        assertEquals(true, resultTrue, "Should result to true because this array has duplicates");
+        assertEquals(false, resultFalse, "Should result to false because this array does NOT have duplicates");
+    }
+
+    @Test void averages() {
+        Library sut = new Library();
+        int[] numbers = {1, 2, 3};
+        double average = sut.averages(numbers);
+        assertEquals(2.0, average, "Should equal 2.0 because the average of 1 + 2 + 3 is 3.");
+        assertNotEquals(999, average, "Should be false because 999 is not the average.");
+    }
+
+    @Test void lowesetAverage() {
+        Library sut = new Library();
+        int[][] weeklyMonthTemperatures = {
+                {66, 64, 58, 65, 71, 57, 60},
+                {57, 65, 65, 70, 72, 65, 51},
+                {55, 54, 60, 53, 59, 57, 61},
+                {65, 56, 55, 52, 55, 62, 57}
+        };
+        String result = sut.lowestAverage(weeklyMonthTemperatures);
+        assertEquals("[55, 54, 60, 53, 59, 57, 61]", result, "Should equal the lowest month temperature");
     }
 }

@@ -42,13 +42,13 @@ public class Library {
         duplicateNumbers.add(2);
         duplicateNumbers.add(3);
         duplicateNumbers.add(1);
-        System.out.println("Duplicates? " + duplicates(duplicateNumbers));
+        System.out.println("Duplicates? " + containsDuplicates(duplicateNumbers));
 
         ArrayList<Integer> nonDuplicateNumbers = new ArrayList<>();
         duplicateNumbers.add(1);
         duplicateNumbers.add(2);
         duplicateNumbers.add(3);
-        System.out.println("Duplicates? " + duplicates(nonDuplicateNumbers));
+        System.out.println("Duplicates? " + containsDuplicates(nonDuplicateNumbers));
 
         // Averages
         int[] someNumbers = {10, 20, 30, 99, 1313, 599};
@@ -74,7 +74,7 @@ public class Library {
         return nums;
     }
 
-    public static boolean duplicates(ArrayList<Integer> numbers){
+    public static boolean containsDuplicates(ArrayList<Integer> numbers){
         ArrayList<Integer> trackedNumbers = new ArrayList<>();
         for (int i = 0; i < numbers.size(); i++){
             if (trackedNumbers.contains(numbers.get(i))){
@@ -107,6 +107,5 @@ public class Library {
         }
         return  Arrays.toString(lowestArr);
     }
-
 
 }
