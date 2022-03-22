@@ -24,6 +24,6 @@ public class App {
                 System.out.println("This is not a pencil");
             }
         }
-
+        System.out.println(pencil.toString());
     }
 }
