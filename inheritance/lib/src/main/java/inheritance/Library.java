@@ -5,6 +5,8 @@ package inheritance;
 
 public class Library {
     public static void main(String[] args){
+
+        // RESTAURANT
         Restaurant applebees = new Restaurant("Applebees", 2);
 //        System.out.println(applebees.toString());
 
@@ -12,12 +14,27 @@ public class Library {
 //        System.out.println(gordonRamsay.toString() );
         Review gordonRamsay1 = new Review("Gordon Ramsay", 4, "THIS PLACE SUCKS");
 //        System.out.println(gordonRamsay.toString() );
-        Review gordonRamsay2 = new Review("Gordon Ramsay", 5, "THIS PLACE SUCKS");
+        Review gordonRamsay2 = new Review("Gordon Ramsay", 3, "THIS PLACE SUCKS");
 //        System.out.println(gordonRamsay.toString() );
-
         applebees.addReview(gordonRamsay);
         applebees.addReview(gordonRamsay1);
         applebees.addReview(gordonRamsay2);
-        System.out.println(applebees);
+//        System.out.println(applebees);
+
+
+        // SHOP
+        Description vansDescription = new Description("This is a new location", "San Diego, CA");
+        Shop<Description> vans = new Shop("Vans", vansDescription, 3 );
+        Review vansReview = new Review("Joe", 3, "This palce is okay");
+        vans.addReview(vansReview);
+        System.out.println(vans.description);
+        System.out.println(vans.toString());
+
+        // THEATER
+        Theater AMC  = new Theater("AMC");
+        AMC.addMovie("Batman");
+        System.out.println(AMC.movies);
+        System.out.println(AMC.removeMovie("Batman"));
+        System.out.println(AMC.removeMovie("Spiderman"));
     }
 }

@@ -98,3 +98,14 @@
 - I had the pleasure of working and talking about the code with:
     - Matthew Cho
         - We were able to read through the prompt and discuss the through process on designing the architecture
+
+## Tips
+
+- Testing for exceptions
+```java
+assertThrows(IllegalArgumentException.class, () -> Code that was cause exception)
+```
+
+## Reflection
+
+- The start of this assignment was a little confusing. Going off the directions, I build the restaurant class and the review class with the given properties and methods. I was having difficulties as I was trying to figure out how I should approach this problem. The lab was called inheritance and interfaces. However I only used classes. Also, Matthew Cho helped me get unstuck by suggesting that I used other properties within my classes. Which I quickly completed the lab after talking things through with him.
